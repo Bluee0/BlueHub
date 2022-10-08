@@ -848,14 +848,14 @@ end)
 
 --URLS
 local library =
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/vozoid/ui-libraries/main/drawing/void/source.lua"))()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Bluee0/Arsenal/main/UI"))()
 local AkaliNotif = loadstring(game:HttpGet("https://raw.githubusercontent.com/Kinlei/Dynissimo/main/Scripts/AkaliNotif.lua"))();
 --URLS--
 
 
 --tick load--
 game.StarterGui:SetCore("SendNotification", {
-    Title = "Olympia private";
+    Title = "Olympia.lua";
     Text = "Loaded in "..tostring(LoadedTime);
     Duration = 5;
     Callback = NotificationBindable;
