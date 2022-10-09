@@ -1,3 +1,5 @@
+_G.Loadable = true
+
 if _G.Loadable == true then
 
 local a = workspace.Parent
