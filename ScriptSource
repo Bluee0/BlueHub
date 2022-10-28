@@ -18,7 +18,7 @@ _G.wait = 100 -- Was an epic variable i added (cheap toggle) but decided to be a
 
 
 _G.FovConfig = {
-    Enabled = true, -- On / off (bruh i actually had a kid dm me about this blocked kek)
+    Enabled = false, -- On / off (bruh i actually had a kid dm me about this blocked kek)
     Rainbow = false, -- Dont edit this table an execute the whole script, execute seperately or in a button etc
     Color = Color3.fromRGB(199, 255, 255), -- Colour of main circle / when using color picker do _G.FovConfig.Color = colorpicker idfk i dont use ui libs
     ColorOutline = Color3.fromRGB(0, 0, 0) -- Colour of the outline of circles
