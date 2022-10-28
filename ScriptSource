@@ -1,0 +1,114 @@
+--[[ Info = 
+
+         {Blue's Complete Fov Circle And Shit Library}
+         
+         You can add zindex to circle to keep it on top of uis
+         
+			
+
+]]
+
+-- I used to print info thats why its commented out and looks dumb
+
+Version = "1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0" -- 🎃
+
+print(Version) -- Printing whats above retard 😁
+
+_G.wait = 100 -- Was an epic variable i added (cheap toggle) but decided to be a real man and make a toggle lol (this is old asf btw i just never removed it, its a piece of histroy)
+
+
+_G.FovConfig = {
+    Enabled = true, -- On / off (bruh i actually had a kid dm me about this blocked kek)
+    Rainbow = false, -- Dont edit this table an execute the whole script, execute seperately or in a button etc
+    Color = Color3.fromRGB(199, 255, 255), -- Colour of main circle / when using color picker do _G.FovConfig.Color = colorpicker idfk i dont use ui libs
+    ColorOutline = Color3.fromRGB(0, 0, 0) -- Colour of the outline of circles
+}
+
+local FovConfig = _G.FovConfig;
+
+local SelfConfig = { -- Not all games will allow this and will need to be edited.
+    Fov = false, -- Self explanatory 
+    FovNumber = 120 -- Field of view size (not circle) / not inside loop so dont make a slider and dm me with 'broken' i added it for pro mod
+}
+
+
+local mouse = game.Players.LocalPlayer:GetMouse() -- Getting local mouse (needed)
+local Player = game:GetService("Players").LocalPlayer -- Getting self (local)
+local RunService = game:GetService("RunService") -- Runservice local
+
+local function getMousePosition() -- Getting mouse (leave how it is)
+    return Vector2.new(mouse.X, mouse.Y)
+end
+
+
+
+-- Outline = _G.dee and _G.outline 
+-- fov_circle = main circle
+
+   if FovConfig.Enabled == true then
+_G.fov_circle = Drawing.new("Circle")
+_G.fov_circle.Thickness = 2
+_G.fov_circle.NumSides = 100
+_G.fov_circle.Radius = 100
+_G.fov_circle.Filled = false
+_G.fov_circle.Visible = true
+_G.fov_circle.Transparency = 1
+_G.fov_circle.Color = FovConfig.Color
+
+   
+
+--Outline Circle Below
+_G.outline = Drawing.new("Circle")
+_G.outline.Thickness = 2
+_G.outline.NumSides = 100
+-- Check render loop for radius
+_G.outline.Filled = false
+_G.outline.Transparency = 1
+_G.outline.Visible = true
+_G.outline.Color = FovConfig.ColorOutline
+
+--Outline Circle Below
+_G.dee = Drawing.new("Circle")
+_G.dee.Thickness = 2
+_G.dee.NumSides = 100
+-- Check render loop for radius
+_G.dee.Filled = false
+_G.dee.Transparency = 1
+_G.dee.Visible = true
+_G.dee.Color = FovConfig.ColorOutline
+
+elseif 
+    FovConfig.Enabled == false then
+        --[[
+                You can change the end to remove or Visible = false
+        ]]
+        _G.dee:Remove() -- or Visible = false
+        _G.outline:Remove()
+        _G.fov_circle:Remove()
+end -- STOP
+
+
+
+-- Start of render loop for posistion / other shit
+
+RunService.RenderStepped:Connect(function(step)
+ if (_G.fov_circle ~= nil) then _G.fov_circle.Visible = _G.FovConfig.Enabled _G.fov_circle.Position = getMousePosition() + Vector2.new(0, 36) end; -- Vector = offset for circle, learn camera to edit its basically centred
+ if (_G.outline ~= nil) then _G.outline.Visible = _G.FovConfig.Enabled _G.outline.Position = getMousePosition() + Vector2.new(0, 36) end;
+ if (_G.dee ~= nil) then _G.dee.Visible = _G.FovConfig.Enabled _G.dee.Position = getMousePosition() + Vector2.new(0, 36) end;
+ if (_G.FovConfig.Rainbow) then  _G.fov_circle.Color = Color3.fromHSV(tick()%5/5,1,1) else _G.fov_circle.Color = _G.FovConfig.Color end;
+_G.outline.Radius = _G.fov_circle.Radius + 2
+_G.dee.Radius = _G.fov_circle.Radius - 2 
+
+end)
+
+-- Start of messy shit / hmmm nvm not that bad just cancerous and not supported in alot of fps games but oh well here if you want it (NOT LOOPED LOL ADD IT URSELF BOZO)
+
+if SelfConfig.Fov == true then
+    game.Workspace.Camera.FieldOfView = SelfConfig.FovNumber -- Backup to the top babygirl stop reading this
+ end
+ 
+ if SelfConfig.Fov == false then
+    game.Workspace.Camera.FieldOfView = 70 -- Edit this to make a backup of regular fov or some shit idk
+ end
+ 
+    -- End of horrible drawing lib / this shit took longer than it shouldve i was just dumb and did it off memory (no bully, this was made like 2 months ago and i still use it till this day)
